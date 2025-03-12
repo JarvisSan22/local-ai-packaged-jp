@@ -1,21 +1,21 @@
 # Self-hosted AI Package
 
-**Self-hosted AI Package** is an open, docker compose template that
-quickly bootstraps a fully featured Local AI and Low Code development
-environment including Ollama for your local LLMs, Open WebUI for an interface to chat with your N8N agents, and Supabase for your database, vector store, and authentication. 
+**AIパッケージの自体ホスト(Self-hosted AI Package)** オーペンソースなDockerComposeテンプレートで低コードのローカルAIのシステムをセットアップします。　
+ローカルAIの完了は、「Ollama」のローカルLLMs, LLMsとn8nのワークフローを話すためにOpenWebUIのチャットのインターフェースです。そして、データベースとVectorデータベースと認証のためにSupabaseが含んでいます
 
-This is Cole's version with a couple of improvements and the addition of Supabase, Open WebUI, Flowise, SearXNG, and Caddy!
-Postgres was also removed since Supabase runs Postgres under the hood.
-Also, the local RAG AI Agent workflow from the video will be automatically in your 
-n8n instance if you use this setup instead of the base one provided by n8n!
+これは、Coleのn8n用Docker Composeバージョンの日本語訳で、いくつかの改善と、Supabase、Open WebUI、Flowise、SearXNG、Caddyの追加が含まれています。
+また、Supabaseが内部でPostgresを使用しているため、Postgresは削除されています。さらに、このセットアップを使用すると、動画で紹介されているローカルRAG AIエージェントのワークフローが自動的にn8nインスタンスに組み込まれます。
 
 ## Important Links
+
+- [Original Local AI Starter Kit](https://github.com/n8n-io/self-hosted-ai-starter-kit) by the n8n team
+
+- [Coleさんの英語版のレポ](https://github.com/coleam00/local-ai-packaged) 
 
 - [Local AI community](https://thinktank.ottomator.ai/c/local-ai/18) forum over in the oTTomator Think Tank
 
 - [GitHub Kanban board](https://github.com/users/coleam00/projects/2/views/1) for feature implementation and bug squashing.
 
-- [Original Local AI Starter Kit](https://github.com/n8n-io/self-hosted-ai-starter-kit) by the n8n team
 
 - Download my N8N + OpenWebUI integration [directly on the Open WebUI site.](https://openwebui.com/f/coleam/n8n_pipe/) (more instructions below)
 
@@ -27,59 +27,55 @@ quickly get started with building self-hosted AI workflows.
 
 ### What’s included
 
-✅ [**Self-hosted n8n**](https://n8n.io/) - Low-code platform with over 400
-integrations and advanced AI components
+✅ [**Self-hosted n8n**](https://n8n.io/) -：400以上の統合機能と高度なAIコンポーネントを備えたローコードプラットフォームです。
 
-✅ [**Supabase**](https://supabase.com/) - Open source database as a service -
-most widely used database for AI agents
+✅ [**Supabase**](https://supabase.com/) - オープンソースのデータベースサービスで、AIエージェントで最も広く使用されています
 
-✅ [**Ollama**](https://ollama.com/) - Cross-platform LLM platform to install
-and run the latest local LLMs
+✅ [**Ollama**](https://ollama.com/) - 最新のローカルLLMをインストールして実行できるクロスプラットフォームのLLMプラットフォームです。
 
-✅ [**Open WebUI**](https://openwebui.com/) - ChatGPT-like interface to
-privately interact with your local models and N8N agents
 
-✅ [**Flowise**](https://flowiseai.com/) - No/low code AI agent
-builder that pairs very well with n8n
 
-✅ [**Qdrant**](https://qdrant.tech/) - Open-source, high performance vector
-store with an comprehensive API. Even though you can use Supabase for RAG, this was
-kept unlike Postgres since it's faster than Supabase so sometimes is the better option.
+✅ [**Open WebUI**](https://openwebui.com/) - ローカルモデルやn8nエージェントとプライベートに対話できるChatGPT風のインターフェースです。
 
-✅ [**SearXNG**](https://searxng.org/) - Open-source, free internet metasearch engine which aggregates 
-results from up to 229 search services. Users are neither tracked nor profiled, hence the fit with the local AI package.
+✅ [**Flowise**](https://flowiseai.com/) - n8nと非常に相性の良いノーコード/ローコードのAIエージェントビルダーです。
 
-✅ [**Caddy**](https://caddyserver.com/) - Managed HTTPS/TLS for custom domains
+✅ [**Qdrant**](https://qdrant.tech/) - 包括的なAPIを備えたオープンソースの高性能ベクトルストアです。
+RAGのためにSupabaseを使用することもできますが、QdrantはSupabaseよりも高速であるため、場合によってはより適した選択肢となります。
 
-## Prerequisites
+✅ [**SearXNG**](https://searxng.org/) - 最大229の検索サービスから結果を集約するオープンソースの無料インターネットメタ検索エンジンです。
+ユーザーは追跡やプロファイリングされないため、ローカルAIパッケージと適合します。
 
-Before you begin, make sure you have the following software installed:
+✅ [**Caddy**](https://caddyserver.com/) - カスタムドメインのためのマネージドHTTPS/TLSを提供します。
 
-- [Python](https://www.python.org/downloads/) - Required to run the setup script
-- [Git/GitHub Desktop](https://desktop.github.com/) - For easy repository management
-- [Docker/Docker Desktop](https://www.docker.com/products/docker-desktop/) - Required to run all services
+## Prerequisites 前提条件
+
+開始する前に、以下のソフトウェアがインストールされていることを確認してください：
+
+- [Python](https://www.python.org/downloads/) - セットアップスクリプトを実行するために必要です。
+- [Git/GitHub Desktop](https://desktop.github.com/) - リポジトリ管理を容易に行うために使用します。 
+- [Docker/Docker Desktop](https://www.docker.com/products/docker-desktop/) - すべてのサービスを実行するために必要です
 
 ## Installation
 
-Clone the repository and navigate to the project directory:
+リポジトリをクローンし、プロジェクトのディレクトリに移動するか、GitHub DesktopでクローンのURLリンクを貼り付けてください。:
 ```bash
 git clone https://github.com/coleam00/local-ai-packaged.git
 cd local-ai-packaged
 ```
 
-Before running the services, you need to set up your environment variables for Supabase following their [self-hosting guide](https://supabase.com/docs/guides/self-hosting/docker#securing-your-services).
+サービスを実行する前に、Supabaseの環境変数を以下のように設定を更新することが必要です [self-hosting guide](https://supabase.com/docs/guides/self-hosting/docker#securing-your-services).
 
-1. Make a copy of `.env.example` and rename it to `.env` in the root directory of the project
-2. Set the following required environment variables:
+1. `.env.example`というファイルをコピーして、 `.env`に改名してください
+2. 以下の必要な環境変数を設定する。
    ```bash
    ############
-   # N8N Configuration
+   # N8N Configuration　環境変数
    ############
    N8N_ENCRYPTION_KEY=
    N8N_USER_MANAGEMENT_JWT_SECRET=
 
    ############
-   # Supabase Secrets
+   # Supabase Secrets　秘密鍵
    ############
    POSTGRES_PASSWORD=
    JWT_SECRET=
@@ -90,7 +86,7 @@ Before running the services, you need to set up your environment variables for S
    POOLER_TENANT_ID=
    ```
 
-> [!IMPORTANT]
+> [!IMPORTANT　重要]
 > Make sure to generate secure random values for all secrets. Never use the example values in production.
 
 3. Set the following environment variables if deploying to production, otherwise leave commented:
